@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ali Salem</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Ali Salem, Senior Data Scientist working on demand forecasting, price elasticity and data engineering.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400;62..125,600;62..125,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one column with a label gutter on the left. Pricing vernacular throughout:
+   results are shown as markdowns (old value struck through, new value on a sale sticker). */
+:root {
+  --paper: #EDF0EA;
+  --ink: #17251F;
+  --soft: #55615A;
+  --rule: #C9D0C6;
+  --green: #1F5A43;
+  --sticker: #F2C230;
+  --sticker-ink: #17251F;
+  --strike: #B5361F;
+  --font-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #121A16; --ink: #E4EBE4; --soft: #9BA89F; --rule: #2C3832;
+    --green: #7FC7A4; --sticker: #E8B923; --sticker-ink: #121A16; --strike: #F07C62; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #121A16; --ink: #E4EBE4; --soft: #9BA89F; --rule: #2C3832;
+  --green: #7FC7A4; --sticker: #E8B923; --sticker-ink: #121A16; --strike: #F07C62; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: var(--font-body); font-size: 1.125rem; line-height: 1.6;
+  font-optical-sizing: auto;
+}
+.wrap {
+  max-width: 1000px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 3rem;
+}
+a { color: var(--green); text-decoration-thickness: 1px; text-underline-offset: 4px; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+
+/* Masthead */
+.top {
+  display: flex; justify-content: space-between; align-items: baseline; gap: .5rem 1.5rem; flex-wrap: wrap;
+  padding-block: 1.4rem; border-bottom: 2px solid var(--ink);
+  font-family: var(--font-display); font-stretch: 100%; font-size: .95rem;
+}
+.top b { font-weight: 800; font-stretch: 125%; letter-spacing: -.01em; }
+.top nav { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.top nav a { color: var(--ink); text-decoration: none; }
+.top nav a:hover { text-decoration: underline; }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: 3rem; align-items: end; padding-block: 3.5rem 3rem; border-bottom: 1px solid var(--rule); }
+.hero > * { min-width: 0; }
+h1 {
+  font-family: var(--font-display); font-weight: 800; font-stretch: 125%;
+  font-size: clamp(3.2rem, 9vw, 6.4rem); line-height: .88; letter-spacing: -.035em;
+  margin: 0 0 1.5rem; text-transform: uppercase;
+}
+.role { font-family: var(--font-display); font-weight: 600; font-stretch: 100%; font-size: 1.05rem; margin: 0 0 1rem; color: var(--green); }
+.lede { font-size: 1.3rem; line-height: 1.5; max-width: 30ch; margin: 0 0 1.5rem; }
+.inline-links { display: flex; gap: 1.4rem; flex-wrap: wrap; font-family: var(--font-display); font-weight: 600; }
+
+.chart { margin: 0; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart figcaption { font-family: var(--font-body); font-style: italic; font-size: .92rem; color: var(--soft); margin-top: .6rem; }
+
+/* Sections */
+section { display: grid; grid-template-columns: 170px 1fr; gap: 2rem; padding-block: 2.75rem; border-bottom: 1px solid var(--rule); }
+section > * { min-width: 0; }
+.label {
+  font-family: var(--font-display); font-weight: 800; font-stretch: 112%;
+  font-size: 1.05rem; letter-spacing: -.005em; padding-top: .2rem;
+}
+h2 { font-family: var(--font-display); font-weight: 600; font-stretch: 100%; font-size: 1.85rem; letter-spacing: -.02em; line-height: 1.15; margin: 0 0 1rem; text-wrap: balance; }
+h3 { font-family: var(--font-display); font-weight: 600; font-stretch: 100%; font-size: 1.25rem; line-height: 1.25; margin: 0; text-wrap: balance; }
+p { margin: 0; max-width: 64ch; }
+.stack { display: grid; gap: 2.25rem; }
+
+/* Markdown-style results */
+.markdowns { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+.md { display: grid; gap: .45rem; align-content: start; }
+.md .price { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
+.md s {
+  font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; color: var(--soft);
+  text-decoration: none; position: relative;
+}
+.md s::after { content: ""; position: absolute; left: -3px; right: -3px; top: 52%; height: 2px; background: var(--strike); transform: rotate(-8deg); }
+.sticker {
+  font-family: var(--font-display); font-weight: 800; font-stretch: 112%;
+  font-size: 1.7rem; line-height: 1; letter-spacing: -.02em; font-variant-numeric: tabular-nums;
+  background: var(--sticker); color: var(--sticker-ink);
+  padding: .35rem .55rem .3rem; transform: rotate(-2deg); display: inline-block;
+}
+.md .plain { font-family: var(--font-display); font-weight: 800; font-stretch: 112%; font-size: 1.7rem; line-height: 1; letter-spacing: -.02em; padding-block: .35rem .3rem; }
+.md p { font-size: .98rem; color: var(--soft); }
+
+/* Roles */
+.role-head { display: flex; justify-content: space-between; align-items: baseline; gap: .25rem 1.5rem; flex-wrap: wrap; }
+.when { font-family: var(--font-mono); font-size: .82rem; color: var(--soft); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.org { font-style: italic; color: var(--soft); margin: .1rem 0 .8rem; }
+ul.points { margin: 0; padding-left: 1.15rem; display: grid; gap: .5rem; max-width: 64ch; }
+ul.points li::marker { content: "– "; color: var(--green); }
+
+/* Projects */
+.project { display: grid; gap: .55rem; padding-bottom: 2.25rem; border-bottom: 1px dashed var(--rule); }
+.project:last-child { padding-bottom: 0; border-bottom: 0; }
+.built { font-family: var(--font-mono); font-size: .8rem; color: var(--soft); }
+.pub { display: inline-block; justify-self: start; font-family: var(--font-display); font-weight: 600; font-size: .85rem; background: var(--sticker); color: var(--sticker-ink); padding: .1rem .45rem; }
+
+/* Skills */
+dl.skills { display: grid; grid-template-columns: 160px 1fr; gap: .8rem 1.5rem; margin: 0; }
+dl.skills dt { font-family: var(--font-display); font-weight: 600; }
+dl.skills dd { margin: 0; }
+
+/* Contact */
+.contact-row { display: flex; align-items: center; gap: .75rem 1.4rem; flex-wrap: wrap; margin-top: 1.25rem; }
+.email { font-family: var(--font-mono); font-size: 1.05rem; user-select: all; border-bottom: 2px solid var(--sticker); padding-bottom: 2px; }
+button.copy {
+  font-family: var(--font-display); font-weight: 600; font-size: .9rem; cursor: pointer;
+  background: var(--ink); color: var(--paper); border: 0; padding: .5rem .9rem;
+}
+button.copy:hover { background: var(--green); }
+
+footer { padding-top: 1.75rem; font-size: .9rem; font-style: italic; color: var(--soft); }
+
+@media (max-width: 760px) {
+  .hero { grid-template-columns: 1fr; padding-block: 2.25rem; gap: 2.25rem; }
+  section { grid-template-columns: 1fr; gap: .9rem; padding-block: 2.25rem; }
+  .markdowns { grid-template-columns: 1fr; gap: 1.4rem; }
+  dl.skills { grid-template-columns: 1fr; gap: .15rem; }
+  dl.skills dd { margin-bottom: .8rem; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .fc-line { stroke-dasharray: 1600; animation: draw 1.8s ease-out both; }
+  @keyframes draw { from { stroke-dashoffset: 1600; } to { stroke-dashoffset: 0; } }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <b>A. Salem</b>
+    <nav aria-label="Sections">
+      <a href="#work">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div>
+      <h1>Ali<br>Salem</h1>
+      <p class="role">Senior Data Scientist, Cairo</p>
+      <p class="lede">I forecast what will sell and measure how price changes it, so pricing teams can plan each week with real numbers.</p>
+      <div class="inline-links">
+        <a href="#contact">Email me</a>
+        <a href="https://www.linkedin.com/in/ali-salem-/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/AliSalem96" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <figure class="chart">
+      <svg id="fc" viewBox="0 0 480 230" role="img" aria-label="Sketch of a weekly demand forecast with an uncertainty band, continuing past today's actual sales"></svg>
+      <figcaption>A typical week-52 forecast: actual sales up to today, then the model and its range.</figcaption>
+    </figure>
+  </div>
+
+  <section id="about">
+    <div class="label">About</div>
+    <div>
+      <h2>Trained in statistics, working where the models meet the pricing calendar.</h2>
+      <p>I studied statistics and mathematics at the University of Toronto and health data science at the University of Manchester. At Pricing One I build SKU-level forecasts and elasticity models on Azure Databricks and sit with the pricing team to turn them into weekly decisions. Before that I spent two years teaching data science and data engineering to more than 500 students.</p>
+      <div class="markdowns" aria-label="Results">
+        <div class="md">
+          <div class="price"><s>25%</s><span class="sticker">10%</span></div>
+          <p>Forecast error (WAPE) after rebuilding the demand models</p>
+        </div>
+        <div class="md">
+          <div class="price"><s>7 days</s><span class="sticker">8 hrs</span></div>
+          <p>Time to prepare a client reporting deck</p>
+        </div>
+        <div class="md">
+          <div class="price"><span class="plain">~1,300</span></div>
+          <p>Product–market combinations with their own elasticity model</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="label">Experience</div>
+    <div class="stack">
+      <article>
+        <div class="role-head"><h3>Senior Data Scientist</h3><span class="when">Jan 2024 – now</span></div>
+        <div class="org">Pricing One, remote</div>
+        <ul class="points">
+          <li>Built SKU-level demand forecasting models (Random Forest, LightGBM) on Databricks with PySpark feature engineering over a 52-week horizon, bringing WAPE from about 25% down to 10%.</li>
+          <li>Developed OLS price elasticity models for about 1,300 product–market combinations, controlling for promotions and seasonality to isolate the true price effect for markdown and promotional pricing.</li>
+          <li>Work with pricing and business teams to turn forecasts and elasticities into weekly planning decisions.</li>
+          <li>Designed and maintain ETL/ELT pipelines on Azure Databricks in Python, Pandas and PySpark, keeping data from many sources clean and consistent.</li>
+        </ul>
+      </article>
+      <article>
+        <div class="role-head"><h3>Teaching Assistant and Course Coordinator</h3><span class="when">Jan 2022 – Jan 2024</span></div>
+        <div class="org">German International University, New Cairo</div>
+        <ul class="points">
+          <li>Taught Introduction to Data Science, Data Engineering and Visualization, Information Management and Introduction to Computer Science to over 500 students.</li>
+          <li>Wrote weekly theory and coding exercises and individual assignments, and graded quizzes, assignments and midterms.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="label">Projects</div>
+    <div class="stack">
+      <article class="project">
+        <div class="role-head"><h3>Slide Automation Tool</h3><span class="when">2024 – 2025</span></div>
+        <p>Builds client reporting decks end to end by driving PowerPoint through its COM API. It copies template slides for each product–market combination from a config file, can build a smaller deck from chosen sections, and writes commentary for every slide with an LLM that reads that slide's own numbers.</p>
+        <span class="built">Python · Flask · JavaScript · LLM APIs · PowerPoint COM</span>
+      </article>
+      <article class="project">
+        <div class="role-head"><h3>AUTOVI</h3><span class="when">2024</span></div>
+        <span class="pub">Published at IV 2024, the 28th International Conference on Information Visualisation</span>
+        <p>A data exploration platform that generates insights automatically, so people without a technical background can analyse their own data. I set the research scope, method and evaluation with Dr. Nada and mentored a junior researcher from the first idea to publication.</p>
+        <span class="built">Python · machine learning · data visualisation</span>
+      </article>
+      <article class="project">
+        <div class="role-head"><h3>Predicting Rheumatoid Arthritis Flares</h3><span class="when">2021</span></div>
+        <p>A Random Forest classifier that predicts flare risk from three months of patient data collected by Manchester Royal Infirmary. I tuned it for sensitivity, because a missed flare costs a patient far more than a false alarm.</p>
+        <span class="built">Python · scikit-learn · Random Forest</span>
+      </article>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="label">Skills</div>
+    <dl class="skills">
+      <dt>Languages</dt><dd>Python (pandas, NumPy, scikit-learn, PySpark), SQL, Spark, R, C++, SAS</dd>
+      <dt>Modelling</dt><dd>LightGBM, XGBoost, Random Forest, Prophet, statsmodels, GLMs, regularisation, clustering, SVM, k-NN, Naive Bayes</dd>
+      <dt>Statistics</dt><dd>Regression, time-series forecasting, price elasticity, hypothesis testing</dd>
+      <dt>Generative AI</dt><dd>OpenAI and Anthropic APIs, prompt engineering, RAG, Hugging Face transformers, fine-tuning</dd>
+      <dt>Cloud and data</dt><dd>Databricks, Azure SQL, Azure Synapse Analytics, Azure Data Lake, Azure Data Factory</dd>
+      <dt>Visualisation</dt><dd>Tableau, Power BI, Matplotlib, seaborn, ggplot2</dd>
+    </dl>
+  </section>
+
+  <section id="education">
+    <div class="label">Education</div>
+    <div class="stack">
+      <article>
+        <div class="role-head"><h3>MSc Health Data Science</h3><span class="when">2020 – 2021</span></div>
+        <div class="org">University of Manchester, UK</div>
+      </article>
+      <article>
+        <div class="role-head"><h3>BSc, Statistics and Mathematics (double major), Computer Science (minor)</h3><span class="when">2015 – 2019</span></div>
+        <div class="org">University of Toronto, Canada</div>
+      </article>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <div class="label">Certifications</div>
+    <div class="stack">
+      <article>
+        <div class="role-head"><h3>Microsoft Certified: Fabric Data Engineer Associate</h3><span class="when">Sep 2026</span></div>
+        <div class="org">Microsoft</div>
+      </article>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="label">Contact</div>
+    <div>
+      <h2>Looking for someone to forecast demand or price it right? Say hello.</h2>
+      <p>Email is the fastest way to reach me. LinkedIn works too.</p>
+      <div class="contact-row">
+        <span class="email" id="email">ali.hany65@gmail.com</span>
+        <button class="copy" id="copyBtn" type="button">Copy email</button>
+        <a href="https://www.linkedin.com/in/ali-salem-/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/AliSalem96" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>Ali Salem, 2026.</footer>
+</div>
+
+<script>
+(function () {
+  var svg = document.getElementById('fc');
+  var W = 480, H = 230, padL = 4, padR = 4, padT = 26, padB = 26, N = 52, cut = 30;
+  function x(i) { return padL + i * (W - padL - padR) / (N - 1); }
+  function y(v) { return padT + (1 - (v - 20) / 100) * (H - padT - padB); }
+  function base(i) { return 60 + 20 * Math.sin((i - 8) / N * 2 * Math.PI) + (i > 44 ? (i - 44) * 3.4 : 0); }
+  var seed = 11; function rnd() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280 - .5; }
+  var fc = [], act = [];
+  for (var i = 0; i < N; i++) { fc.push(base(i)); act.push(base(i) + rnd() * 15); }
+  function wid(i) { return 5 + (i > cut ? (i - cut) * .5 : 0); }
+  var band = '';
+  for (i = cut; i < N; i++) band += (i === cut ? 'M' : 'L') + x(i).toFixed(1) + ' ' + y(fc[i] + wid(i)).toFixed(1);
+  for (i = N - 1; i >= cut; i--) band += 'L' + x(i).toFixed(1) + ' ' + y(fc[i] - wid(i)).toFixed(1);
+  function line(arr, a, b) { var d = ''; for (var k = a; k <= b; k++) d += (k === a ? 'M' : 'L') + x(k).toFixed(1) + ' ' + y(arr[k]).toFixed(1); return d; }
+  var T = 'font-family="Source Serif 4, Georgia, serif" font-style="italic" font-size="13" fill="var(--soft)"';
+  var M = 'font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--soft)"';
+  var ticks = '';
+  [0, 13, 26, 39, 51].forEach(function (k) { ticks += '<text x="' + x(k) + '" y="' + (H - 6) + '" ' + M + ' text-anchor="' + (k === 0 ? 'start' : k === 51 ? 'end' : 'middle') + '">wk ' + (k + 1) + '</text>'; });
+  var lx = x(47), ly = y(fc[47] + wid(47));
+  svg.innerHTML =
+    '<line x1="' + padL + '" x2="' + (W - padR) + '" y1="' + (H - padB) + '" y2="' + (H - padB) + '" stroke="var(--ink)" stroke-width="1.5"/>' +
+    '<path d="' + band + 'Z" fill="var(--green)" fill-opacity=".14"/>' +
+    '<line x1="' + x(cut) + '" x2="' + x(cut) + '" y1="' + (padT - 8) + '" y2="' + (H - padB) + '" stroke="var(--ink)" stroke-width="1" stroke-dasharray="2 4"/>' +
+    '<text x="' + (x(cut) - 6) + '" y="' + (padT - 12) + '" text-anchor="end" ' + T + '>today</text>' +
+    '<path d="' + line(act, 0, cut) + '" fill="none" stroke="var(--ink)" stroke-width="1.75" stroke-linejoin="round"/>' +
+    '<path class="fc-line" d="' + line(fc, cut, N - 1) + '" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>' +
+    '<circle cx="' + x(cut) + '" cy="' + y(act[cut]) + '" r="4" fill="var(--sticker)" stroke="var(--ink)" stroke-width="1.5"/>' +
+    '<text x="' + x(4) + '" y="' + (y(Math.max.apply(null, act.slice(0, 12))) - 10) + '" ' + T + '>actual sales</text>' +
+    '<path d="M' + (lx - 4) + ' ' + (ly - 22) + ' Q' + (lx + 2) + ' ' + (ly - 12) + ' ' + lx + ' ' + (ly - 4) + '" fill="none" stroke="var(--soft)" stroke-width="1"/>' +
+    '<text x="' + (lx - 8) + ' " y="' + (ly - 26) + '" text-anchor="end" ' + T + '>forecast + range</text>' +
+    ticks;
+
+  var btn = document.getElementById('copyBtn'), em = document.getElementById('email');
+  btn.addEventListener('click', function () {
+    var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy email'; }, 1600); };
+    var fallback = function () { var r = document.createRange(); r.selectNodeContents(em); var s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected, press Ctrl+C'; };
+    try { navigator.clipboard.writeText(em.textContent).then(done, fallback); } catch (e) { fallback(); }
+  });
+})();
+</script>
+</body>
+</html>
